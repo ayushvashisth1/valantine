@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Hanvika ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fff0f3;
+            font-family: 'Arial Round', sans-serif;
+            overflow: hidden;
+        }
+
+        #container {
+            background: white;
+            padding: 35px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255, 75, 130, 0.2);
+            text-align: center;
+            z-index: 10;
+            max-width: 400px;
+            border: 4px solid #ffb7c5;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff4b82;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .gif-box img {
+            width: 200px;
+            border-radius: 20px;
+        }
+
+        /* Fixed Button Container to prevent overlap */
+        .btns {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px; /* Space between buttons */
+            margin-top: 30px;
+            min-height: 50px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4b82;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 75, 130, 0.4);
+        }
+
+        #noBtn {
+            background-color: #fce4ec;
+            color: #ff4b82;
+            border: 2px solid #ff4b82;
+            position: relative; /* Starts in place, then goes absolute via JS */
+            z-index: 100;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .music-btn {
+            background: #ff4b82;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .love-note {
+            font-style: italic;
+            color: #ff8fa3;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .heart {
+            position: absolute;
+            top: -10%;
+            color: #ffb7c5;
+            animation: fall linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="questionArea">
+            <div class="gif-box">
+                <img src="https://media1.tenor.com/m/X_E_E_Kk_7sAAAAC/bubu-dudu-bubu.gif" alt="Bubu Dudu">
+            </div>
+            <h1>Hanvika, Will you be my Valentine?</h1>
+            <p class="subtitle">I promise to always be with you.. 🐻❤️</p>
+            
+            <div class="btns">
+                <button id="yesBtn" onclick="showLove()">YES!</button>
+                <button id="noBtn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+
+        <div id="happyArea" class="hidden">
+            <div class="gif-box">
+                <img src="https://media1.tenor.com/m/9_K2vC9X798AAAAC/bubu-dudu-happy.gif" alt="Happy Bubu Dudu">
+            </div>
+            <h1>YAY! ❤️ See you soon!</h1>
+            <p class="love-note">"In a world full of GIRLS , I'm glad I found my Hanvika."</p>
+            
+            <a href="https://www.youtube.com/watch?v=H-CmTGn0aXY&list=RDH-CmTGn0aXY&start_radio=1" target="_blank" class="music-btn">🎵 Play our Song</a>
+        </div>
+    </div>
+
+    <script>
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            // Change position to fixed once the user interacts
+            btn.style.position = 'fixed';
+            
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 40) + 20;
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 40) + 20;
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function showLove() {
+            document.getElementById('questionArea').classList.add('hidden');
+            document.getElementById('happyArea').classList.remove('hidden');
+            setInterval(createHeart, 150);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
